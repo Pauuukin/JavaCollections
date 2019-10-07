@@ -1,33 +1,40 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        /*переменная должна реализовывать главный интерфейс, чтобы можно было поменять реализацию на ходу(exe: array -> linked)
-        * поэтому заводим переменную типа List, a не ArrayList, хотя работать будет и так и так*/
-        List<Integer> list = new ArrayList();
-        for(int i=0; i<10; i++){
-            list.add(i);
-        }
-//        медленное удаление
-        list.remove(5);
-        System.out.println(list);
+      /*--------- linked list ------------*/
+        List<Integer> linkedList = new LinkedList<>();
 
-/*      ---  бежим по массиву  ---
-        for (int i=0;i<list.size();i++){
-            System.out.println(list.get(i));
-        }
+        //  head -> [0] -> [1] -> [2] -> [3]
 
-        for(Integer x : list)
-            System.out.println(x);
-            -------------------------
-*/
+        List<Integer> arrayList = new ArrayList<>();
 
-//        System.out.println(list);
-//        System.out.println(list.get(99));
-//        System.out.println(list.size());
+        //  [7][6][0][1][2][3][4][5]
+
+        measureTime(linkedList);
+        measureTime(arrayList);
     }
+    private static void measureTime(List<Integer> list){
+
+        long start = System.currentTimeMillis();
+
+        for(int i=0; i<100000; i++){
+            list.add(0,i); //запись в начало листа
+        }
+
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
+    }
+    /*
+    * Добавление элементов в конец листа - arrayList (в два раза)
+    * Считывание по индексу (get) - arrayList (в сотни раз быстрее)
+    * Добавление элементов в начало листа - linkedList (в сотни раз быстрее, так как не нужно сдвигать весь массив вправо)
+    * Удаление - linkedList
+    * */
+
 }
