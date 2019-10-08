@@ -1,29 +1,32 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        /*---------realisation linked list ------------*/
-        MyLinkedList myLinkedList = new MyLinkedList();
-        myLinkedList.add(1);
-        myLinkedList.add(2);
-        myLinkedList.add(10);
+       /*-------- hash map ------------
+       *
+       * Использовать, когда не важен порядок и сортировка
+       *
+       * */
+        Map<Integer, String> map = new HashMap<>();
 
+        map.put(1, "Один");         //Entry
+        map.put(2, "Два");          //Entry
+        map.put(3, "Три");          //Entry
 
-        System.out.println(myLinkedList);
-        System.out.println(myLinkedList.get(0));
-        System.out.println(myLinkedList.get(1));
-        System.out.println(myLinkedList.get(2));
+        System.out.println(map);
+        // не может быть дубликатов ключей
+        map.put(3,"-три-");
+        System.out.println(map);
+        System.out.println(map.get(1));
 
-        myLinkedList.remove(2);
-        System.out.println(myLinkedList);
+        System.out.println("----------------------------------");
 
-        myLinkedList.remove(1);
-        System.out.println(myLinkedList);
+        for(Map.Entry<Integer,String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
     }
 
 }
